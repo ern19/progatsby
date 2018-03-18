@@ -1,14 +1,15 @@
 import React from 'react'
 import Link from 'gatsby-link'
+import PostListing from '../components/Posts/PostListing'
+
 
 const IndexPage = ({data}) => (
   <div>
-    <h1>Hi people</h1>
-    <p>{data.site.siteMetadata.title}</p>
-    <p>{data.site.siteMetadata.desc}</p>
+  <h2>Posts</h2>
+    {data.allMarkdownRemark.edges.map(({node}) =>{
+      return <PostListing post={node} key={node.id}/>
+    })}
     
-    <p>Now go build something great.</p>
-    <Link to="/page-2/">Go to page 2</Link>
   </div>
 );
 
@@ -20,6 +21,19 @@ query SiteMeta {
     siteMetadata {
       title
       desc
+    }
+  }
+  allMarkdownRemark{
+    edges {
+      node {
+        id
+        frontmatter {
+          title
+          date(formatString:"MMM DD YYYY")
+        }
+        html
+        excerpt(pruneLength:280)
+      }
     }
   }
 }
