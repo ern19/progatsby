@@ -23,7 +23,10 @@ query SiteMeta {
       desc
     }
   }
-  allMarkdownRemark{
+  allMarkdownRemark(sort: {
+    fields: [frontmatter___date],
+    order: DESC
+  }){
     edges {
       node {
         id
