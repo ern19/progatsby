@@ -3,6 +3,7 @@ backend:
   repo: ern19/progatsby
 
 media_folder: static/assets
+public_folder: /assets
 
 collections: 
   - name: post
