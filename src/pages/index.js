@@ -28,10 +28,13 @@ query SiteMeta {
       node {
         title
         body {
-          body
+          childMarkdownRemark {
+            excerpt
+          }
         }
+        createdAt(formatString: "MMMM DD, YYYY")
         slug
-				id
+        id
       }
     }
   }
